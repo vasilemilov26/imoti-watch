@@ -1,0 +1,1325 @@
+{
+ "ts": 1791240921,
+ "items": [
+  {
+   "name": "Община Аврен",
+   "home": "https://avren.bg/",
+   "oblast": "Варна"
+  },
+  {
+   "name": "Община Айтос",
+   "home": "http://www.aitos.org/",
+   "oblast": "Бургас"
+  },
+  {
+   "name": "Община Аксаково",
+   "home": "https://aksakovo.bg/",
+   "oblast": "Варна"
+  },
+  {
+   "name": "Община Алфатар",
+   "home": "http://alfatar.egov.bg",
+   "oblast": "Силистра"
+  },
+  {
+   "name": "Община Антон",
+   "home": "https://antonbg.eu/",
+   "oblast": "Софийска"
+  },
+  {
+   "name": "Община Антоново",
+   "home": "https://www.antonovo.bg/",
+   "oblast": "Търговище"
+  },
+  {
+   "name": "Община Априлци",
+   "home": "http://www.obshtina-apriltsi.com/",
+   "oblast": "Ловеч"
+  },
+  {
+   "name": "Община Ардино",
+   "home": "http://www.ardino.bg",
+   "oblast": "Кърджали"
+  },
+  {
+   "name": "Община Асеновград",
+   "home": "https://www.asenovgrad.bg/",
+   "oblast": "Пловдив"
+  },
+  {
+   "name": "Община Балчик",
+   "home": "https://www.balchik.bg/",
+   "oblast": "Добрич"
+  },
+  {
+   "name": "Община Баните",
+   "home": "https://banite.egov.bg/",
+   "oblast": "Смолян"
+  },
+  {
+   "name": "Община Банско",
+   "home": "http://www.bansko.bg",
+   "oblast": "Благоевград"
+  },
+  {
+   "name": "Община Батак",
+   "home": "https://batak.bg/",
+   "oblast": "Пазарджик"
+  },
+  {
+   "name": "Община Белене",
+   "home": "https://belene.bg/",
+   "oblast": "Плевен"
+  },
+  {
+   "name": "Община Белица",
+   "home": "https://obshtinabelitsa.com/",
+   "oblast": "Благоевград"
+  },
+  {
+   "name": "Община Белово",
+   "home": "http://www.belovo.eu",
+   "oblast": "Пазарджик"
+  },
+  {
+   "name": "Община Белоградчик",
+   "home": "https://belogradchik.egov.bg",
+   "oblast": "Видин"
+  },
+  {
+   "name": "Община Белослав",
+   "home": "http://www.beloslav.org/",
+   "oblast": "Варна"
+  },
+  {
+   "name": "Община Берковица",
+   "home": "http://www.berkovitsa.bg/",
+   "oblast": "Монтана"
+  },
+  {
+   "name": "Община Благоевград",
+   "home": "https://blagoevgrad.bg/",
+   "oblast": "Благоевград"
+  },
+  {
+   "name": "Община Бобов дол",
+   "home": "https://bobovdol.egov.bg/",
+   "oblast": "Кюстендил"
+  },
+  {
+   "name": "Община Бобошево",
+   "home": "https://obshtina-boboshevo.eu/",
+   "oblast": "Кюстендил"
+  },
+  {
+   "name": "Община Божурище",
+   "home": "http://www.bozhurishte.bg/",
+   "oblast": "Софийска"
+  },
+  {
+   "name": "Община Бойница",
+   "home": "https://obshtina-boinica.com",
+   "oblast": "Видин"
+  },
+  {
+   "name": "Община Бойчиновци",
+   "home": "http://www.boychinovtsi.bg/",
+   "oblast": "Монтана"
+  },
+  {
+   "name": "Община Болярово",
+   "home": "https://www.bolyarovo.bg/",
+   "oblast": "Ямбол"
+  },
+  {
+   "name": "Община Борино",
+   "home": "http://www.borino.org/",
+   "oblast": "Смолян"
+  },
+  {
+   "name": "Община Борован",
+   "home": "http://www.borovan.bg",
+   "oblast": "Враца"
+  },
+  {
+   "name": "Община Борово",
+   "home": "http://www.borovo.org/",
+   "oblast": "Русе"
+  },
+  {
+   "name": "Община Ботевград",
+   "home": "http://www.botevgrad.org/",
+   "oblast": "Софийска"
+  },
+  {
+   "name": "Община Братя Даскалови",
+   "home": "http://www.bratia-daskalovi.com/",
+   "oblast": "Стара Загора"
+  },
+  {
+   "name": "Община Брацигово",
+   "home": "https://bratsigovo.egov.bg/wps/portal/municipality-bratsigovo/home",
+   "oblast": "Пазарджик"
+  },
+  {
+   "name": "Община Брегово",
+   "home": "http://www.bregovo.net/",
+   "oblast": "Видин"
+  },
+  {
+   "name": "Община Брезник",
+   "home": "https://www.breznik.info/",
+   "oblast": "Перник"
+  },
+  {
+   "name": "Община Брезово",
+   "home": "http://www.brezovo.bg/",
+   "oblast": "Пловдив"
+  },
+  {
+   "name": "Община Брусарци",
+   "home": "http://brusartsi.com/",
+   "oblast": "Монтана"
+  },
+  {
+   "name": "Община Бургас",
+   "home": "http://www.burgas.bg",
+   "oblast": "Бургас"
+  },
+  {
+   "name": "Община Бяла",
+   "home": "http://byala.bg/",
+   "oblast": "Русе"
+  },
+  {
+   "name": "Община Бяла Слатина",
+   "home": "https://byala-slatina.bg/",
+   "oblast": "Враца"
+  },
+  {
+   "name": "Община Варна",
+   "home": "https://www.varna.bg/",
+   "oblast": "Варна"
+  },
+  {
+   "name": "Община Велики Преслав",
+   "home": "http://velikipreslav.bg/",
+   "oblast": "Шумен"
+  },
+  {
+   "name": "Община Велико Търново",
+   "home": "http://veliko-turnovo.bg/",
+   "oblast": "Велико Търново"
+  },
+  {
+   "name": "Община Велинград",
+   "home": "https://m.velingrad.bg/",
+   "oblast": "Пазарджик"
+  },
+  {
+   "name": "Община Венец",
+   "home": "http://www.venets.bg/",
+   "oblast": "Шумен"
+  },
+  {
+   "name": "Община Ветово",
+   "home": "https://www.vetovo.bg/",
+   "oblast": "Русе"
+  },
+  {
+   "name": "Община Ветрино",
+   "home": "http://www.vetrino.bg/",
+   "oblast": "Варна"
+  },
+  {
+   "name": "Община Видин",
+   "home": "http://vidin.bg/",
+   "oblast": "Видин"
+  },
+  {
+   "name": "Община Враца",
+   "home": "http://www.vratza.bg/",
+   "oblast": "Враца"
+  },
+  {
+   "name": "Община Вълчедръм",
+   "home": "http://www.valchedram.com",
+   "oblast": "Монтана"
+  },
+  {
+   "name": "Община Вълчи дол",
+   "home": "https://www.valchidol.bg",
+   "oblast": "Варна"
+  },
+  {
+   "name": "Община Върбица",
+   "home": "http://www.varbitsa.org/",
+   "oblast": "Шумен"
+  },
+  {
+   "name": "Община Вършец",
+   "home": "http://www.varshets.bg",
+   "oblast": "Монтана"
+  },
+  {
+   "name": "Община Габрово",
+   "home": "http://www.gabrovo.bg/",
+   "oblast": "Габрово"
+  },
+  {
+   "name": "Община Генерал Тошево",
+   "home": "http://www.toshevo.com",
+   "oblast": "Добрич"
+  },
+  {
+   "name": "Община Георги Дамяново",
+   "home": "https://georgidamyanovo.com/",
+   "oblast": "Монтана"
+  },
+  {
+   "name": "Община Главиница",
+   "home": "http://www.glavinitsa.bg/",
+   "oblast": "Силистра"
+  },
+  {
+   "name": "Община Годеч",
+   "home": "https://www.godech.bg/",
+   "oblast": "Софийска"
+  },
+  {
+   "name": "Община Горна Малина",
+   "home": "https://www.gornamalina.bg/",
+   "oblast": "Софийска"
+  },
+  {
+   "name": "Община Горна Оряховица",
+   "home": "http://www.g-oryahovica.org",
+   "oblast": "Велико Търново"
+  },
+  {
+   "name": "Община Гоце Делчев",
+   "home": "http://www.gotsedelchev.bg/",
+   "oblast": "Благоевград"
+  },
+  {
+   "name": "Община Грамада",
+   "home": "http://www.gramada.net/",
+   "oblast": "Видин"
+  },
+  {
+   "name": "Община Гулянци",
+   "home": "https://gulyantsi.bg",
+   "oblast": "Плевен"
+  },
+  {
+   "name": "Община Гурково",
+   "home": "https://www.gurkovo.bg/",
+   "oblast": "Стара Загора"
+  },
+  {
+   "name": "Община Гълъбово",
+   "home": "http://www.galabovo.org",
+   "oblast": "Стара Загора"
+  },
+  {
+   "name": "Община Гърмен",
+   "home": "https://www.garmen.bg/",
+   "oblast": "Благоевград"
+  },
+  {
+   "name": "Община Две могили",
+   "home": "http://www.dvemogili.bg/",
+   "oblast": "Русе"
+  },
+  {
+   "name": "Община Девин",
+   "home": "http://www.devin.bg/",
+   "oblast": "Смолян"
+  },
+  {
+   "name": "Община Девня",
+   "home": "https://www.devnya.bg",
+   "oblast": "Варна"
+  },
+  {
+   "name": "Община Джебел",
+   "home": "http://www.dzhebelbg.com/",
+   "oblast": "Кърджали"
+  },
+  {
+   "name": "Община Димитровград",
+   "home": "http://www.dimitrovgrad.bg/",
+   "oblast": "Хасково"
+  },
+  {
+   "name": "Община Димово",
+   "home": "http://www.dimovo.bg/?page=pages&pid=5",
+   "oblast": "Видин"
+  },
+  {
+   "name": "Община Добрич",
+   "home": "https://www.dobrich.bg",
+   "oblast": "Добрич"
+  },
+  {
+   "name": "Община Добрич-селска",
+   "home": "http://www.dobrichka.bg",
+   "oblast": "Добрич"
+  },
+  {
+   "name": "Община Долна Митрополия",
+   "home": "https://www.dolnamitropolia.bg/",
+   "oblast": "Плевен"
+  },
+  {
+   "name": "Община Долна баня",
+   "home": "https://dolna-banya.egov.bg/",
+   "oblast": "Софийска"
+  },
+  {
+   "name": "Община Долни Дъбник",
+   "home": "https://www.dolnidabnik.egov.bg",
+   "oblast": "Плевен"
+  },
+  {
+   "name": "Община Долни чифлик",
+   "home": "http://dolni-chiflik.acstre.com/lang_en-GB_home.html",
+   "oblast": "Варна"
+  },
+  {
+   "name": "Община Доспат",
+   "home": "http://www.dospat-bg.com/",
+   "oblast": "Смолян"
+  },
+  {
+   "name": "Община Драгоман",
+   "home": "https://dragoman.bg/",
+   "oblast": "Софийска"
+  },
+  {
+   "name": "Община Дряново",
+   "home": "http://www.dryanovo.bg/",
+   "oblast": "Габрово"
+  },
+  {
+   "name": "Община Дулово",
+   "home": "http://dulovo.bg",
+   "oblast": "Силистра"
+  },
+  {
+   "name": "Община Дупница",
+   "home": "http://www.dupnitsa.bg",
+   "oblast": "Кюстендил"
+  },
+  {
+   "name": "Община Дългопол",
+   "home": "https://www.dalgopol.bg/",
+   "oblast": "Варна"
+  },
+  {
+   "name": "Община Елена",
+   "home": "http://www.elena.bg/",
+   "oblast": "Велико Търново"
+  },
+  {
+   "name": "Община Елин Пелин",
+   "home": "http://www.elinpelin.org",
+   "oblast": "Софийска"
+  },
+  {
+   "name": "Община Елхово",
+   "home": "http://www.elhovobg.org/",
+   "oblast": "Ямбол"
+  },
+  {
+   "name": "Община Етрополе",
+   "home": "https://etropole.bg",
+   "oblast": "Софийска"
+  },
+  {
+   "name": "Община Завет",
+   "home": "http://www.zavet-bg.com/",
+   "oblast": "Разград"
+  },
+  {
+   "name": "Община Земен",
+   "home": "http://zemen-bg.com/",
+   "oblast": "Перник"
+  },
+  {
+   "name": "Община Златарица",
+   "home": "https://zlataritsa.bg/",
+   "oblast": "Велико Търново"
+  },
+  {
+   "name": "Община Златица",
+   "home": "https://zlatitsa.egov.bg",
+   "oblast": "Софийска"
+  },
+  {
+   "name": "Община Златоград",
+   "home": "http://www.zlatograd.bg/",
+   "oblast": "Смолян"
+  },
+  {
+   "name": "Община Ивайловград",
+   "home": "https://ivaylovgrad.bg/",
+   "oblast": "Хасково"
+  },
+  {
+   "name": "Община Иваново",
+   "home": "http://www.ivanovo.bg/",
+   "oblast": "Русе"
+  },
+  {
+   "name": "Община Искър",
+   "home": "https://iskarbg.bg/",
+   "oblast": "Плевен"
+  },
+  {
+   "name": "Община Исперих",
+   "home": "http://www.isperih.bg/",
+   "oblast": "Разград"
+  },
+  {
+   "name": "Община Ихтиман",
+   "home": "http://ihtiman-obshtina.com/",
+   "oblast": "Софийска"
+  },
+  {
+   "name": "Община Каварна",
+   "home": "http://www.kavarna.bg",
+   "oblast": "Добрич"
+  },
+  {
+   "name": "Община Казанлък",
+   "home": "http://www.kazanlak.bg/",
+   "oblast": "Стара Загора"
+  },
+  {
+   "name": "Община Кайнарджа",
+   "home": "https://www.kaynardzha.egov.bg",
+   "oblast": "Силистра"
+  },
+  {
+   "name": "Община Калояново",
+   "home": "http://kaloianovo.org/",
+   "oblast": "Пловдив"
+  },
+  {
+   "name": "Община Камено",
+   "home": "http://www.kameno.bg",
+   "oblast": "Бургас"
+  },
+  {
+   "name": "Община Каолиново",
+   "home": "http://www.kaolinovo.bg/",
+   "oblast": "Шумен"
+  },
+  {
+   "name": "Община Карлово",
+   "home": "https://www.karlovo.bg",
+   "oblast": "Пловдив"
+  },
+  {
+   "name": "Община Карнобат",
+   "home": "http://karnobat.acstre.com",
+   "oblast": "Бургас"
+  },
+  {
+   "name": "Община Каспичан",
+   "home": "http://www.kaspichan.org/",
+   "oblast": "Шумен"
+  },
+  {
+   "name": "Община Кирково",
+   "home": "http://kirkovo.bg/",
+   "oblast": "Кърджали"
+  },
+  {
+   "name": "Община Кнежа",
+   "home": "https://knezha.bg",
+   "oblast": "Плевен"
+  },
+  {
+   "name": "Община Ковачевци",
+   "home": "https://kovachevtsi.bg/wps/portal/municipality-kovachevtsi/home",
+   "oblast": "Перник"
+  },
+  {
+   "name": "Община Козлодуй",
+   "home": "https://kozloduy.bg",
+   "oblast": "Враца"
+  },
+  {
+   "name": "Община Копривщица",
+   "home": "http://koprivshtitsa-bg.com",
+   "oblast": "Софийска"
+  },
+  {
+   "name": "Община Костенец",
+   "home": "http://www.kostenetz.com",
+   "oblast": "Софийска"
+  },
+  {
+   "name": "Община Костинброд",
+   "home": "https://kostinbrod.bg/",
+   "oblast": "Софийска"
+  },
+  {
+   "name": "Община Котел",
+   "home": "http://www.kotel.bg/",
+   "oblast": "Сливен"
+  },
+  {
+   "name": "Община Кочериново",
+   "home": "https://kocherinovo.bg/",
+   "oblast": "Кюстендил"
+  },
+  {
+   "name": "Община Кресна",
+   "home": "http://kresna-bg.com/",
+   "oblast": "Благоевград"
+  },
+  {
+   "name": "Община Криводол",
+   "home": "https://www.krivodol.com",
+   "oblast": "Враца"
+  },
+  {
+   "name": "Община Кричим",
+   "home": "https://www.krichim.bg",
+   "oblast": "Пловдив"
+  },
+  {
+   "name": "Община Крумовград",
+   "home": "http://www.krumovgrad.bg/",
+   "oblast": "Кърджали"
+  },
+  {
+   "name": "Община Крушари",
+   "home": "http://www.krushari.bg",
+   "oblast": "Добрич"
+  },
+  {
+   "name": "Община Кубрат",
+   "home": "http://www.kubrat.bg",
+   "oblast": "Разград"
+  },
+  {
+   "name": "Община Куклен",
+   "home": "https://kuklen.org/",
+   "oblast": "Пловдив"
+  },
+  {
+   "name": "Община Кула",
+   "home": "http://obshtina-kula.com/bg/",
+   "oblast": "Видин"
+  },
+  {
+   "name": "Община Кърджали",
+   "home": "http://www.kardjali.bg",
+   "oblast": "Кърджали"
+  },
+  {
+   "name": "Община Кюстендил",
+   "home": "https://kyustendil.bg/",
+   "oblast": "Кюстендил"
+  },
+  {
+   "name": "Община Левски",
+   "home": "https://oblevski.egov.bg",
+   "oblast": "Плевен"
+  },
+  {
+   "name": "Община Лесичово",
+   "home": "https://www.lesichovo.bg",
+   "oblast": "Пазарджик"
+  },
+  {
+   "name": "Община Летница",
+   "home": "http://www.letnitsa.bg/",
+   "oblast": "Ловеч"
+  },
+  {
+   "name": "Община Ловеч",
+   "home": "https://www.lovech.bg/",
+   "oblast": "Ловеч"
+  },
+  {
+   "name": "Община Лозница",
+   "home": "https://www.loznitsa.bg",
+   "oblast": "Разград"
+  },
+  {
+   "name": "Община Лом",
+   "home": "https://www.lom.bg/",
+   "oblast": "Монтана"
+  },
+  {
+   "name": "Община Луковит",
+   "home": "https://www.lukovit.bg/",
+   "oblast": "Ловеч"
+  },
+  {
+   "name": "Община Лъки",
+   "home": "http://www.oblaki.com/",
+   "oblast": "Пловдив"
+  },
+  {
+   "name": "Община Любимец",
+   "home": "http://www.lyubimets.org/",
+   "oblast": "Хасково"
+  },
+  {
+   "name": "Община Лясковец",
+   "home": "http://www.lyaskovets.net",
+   "oblast": "Велико Търново"
+  },
+  {
+   "name": "Община Мадан",
+   "home": "https://www.madan.bg/",
+   "oblast": "Смолян"
+  },
+  {
+   "name": "Община Маджарово",
+   "home": "http://www.madzharovo.bg",
+   "oblast": "Хасково"
+  },
+  {
+   "name": "Община Макреш",
+   "home": "http://www.makreshbg.com/",
+   "oblast": "Видин"
+  },
+  {
+   "name": "Община Малко Търново",
+   "home": "http://www.malkotarnovo.org/",
+   "oblast": "Бургас"
+  },
+  {
+   "name": "Община Марица",
+   "home": "http://maritsa.bg/",
+   "oblast": "Пловдив"
+  },
+  {
+   "name": "Община Медковец",
+   "home": "http://www.medkovec.bg",
+   "oblast": "Монтана"
+  },
+  {
+   "name": "Община Мездра",
+   "home": "https://www.mezdra.bg",
+   "oblast": "Враца"
+  },
+  {
+   "name": "Община Мизия",
+   "home": "https://www.obshtinamizia.com",
+   "oblast": "Враца"
+  },
+  {
+   "name": "Община Минерални бани",
+   "home": "https://mineralnibani.bg/",
+   "oblast": "Хасково"
+  },
+  {
+   "name": "Община Мирково",
+   "home": "https://www.mirkovo.bg",
+   "oblast": "Софийска"
+  },
+  {
+   "name": "Община Момчилград",
+   "home": "https://www.momchilgrad.bg",
+   "oblast": "Кърджали"
+  },
+  {
+   "name": "Община Монтана",
+   "home": "http://www.montana.bg/",
+   "oblast": "Монтана"
+  },
+  {
+   "name": "Община Мъглиж",
+   "home": "http://www.maglizh.bg/",
+   "oblast": "Стара Загора"
+  },
+  {
+   "name": "Община Невестино",
+   "home": "https://www.nevestino.bg",
+   "oblast": "Кюстендил"
+  },
+  {
+   "name": "Община Неделино",
+   "home": "http://www.nedelino.bg/",
+   "oblast": "Смолян"
+  },
+  {
+   "name": "Община Несебър",
+   "home": "http://www.nesebarinfo.com",
+   "oblast": "Бургас"
+  },
+  {
+   "name": "Община Никола Козлево",
+   "home": "https://www.nikolakozlevo.bg",
+   "oblast": "Шумен"
+  },
+  {
+   "name": "Община Николаево",
+   "home": "http://www.nikolaevo.net/",
+   "oblast": "Стара Загора"
+  },
+  {
+   "name": "Община Никопол",
+   "home": "https://www.nikopol-bg.com",
+   "oblast": "Плевен"
+  },
+  {
+   "name": "Община Нова Загора",
+   "home": "https://nova-zagora.bg/bg",
+   "oblast": "Сливен"
+  },
+  {
+   "name": "Община Нови пазар",
+   "home": "http://www.novipazar.acstre.com/",
+   "oblast": "Шумен"
+  },
+  {
+   "name": "Община Ново село",
+   "home": "https://obshtina-novoselo.com/bg/",
+   "oblast": "Видин"
+  },
+  {
+   "name": "Община Омуртаг",
+   "home": "https://www.omurtag.bg",
+   "oblast": "Търговище"
+  },
+  {
+   "name": "Община Опака",
+   "home": "https://www.opaka.bg",
+   "oblast": "Търговище"
+  },
+  {
+   "name": "Община Опан",
+   "home": "http://www.opan.bg/",
+   "oblast": "Стара Загора"
+  },
+  {
+   "name": "Община Оряхово",
+   "home": "https://www.oriahovo.bg",
+   "oblast": "Враца"
+  },
+  {
+   "name": "Община Павел баня",
+   "home": "https://www.pavelbanya.bg",
+   "oblast": "Стара Загора"
+  },
+  {
+   "name": "Община Павликени",
+   "home": "http://www.pavlikeni.bg/",
+   "oblast": "Велико Търново"
+  },
+  {
+   "name": "Община Пазарджик",
+   "home": "https://www.pazardzhik.bg",
+   "oblast": "Пазарджик"
+  },
+  {
+   "name": "Община Панагюрище",
+   "home": "https://panagyurishte.bg",
+   "oblast": "Пазарджик"
+  },
+  {
+   "name": "Община Перник",
+   "home": "https://www.pernik.bg",
+   "oblast": "Перник"
+  },
+  {
+   "name": "Община Перущица",
+   "home": "https://perushtitsa.egov.bg",
+   "oblast": "Пловдив"
+  },
+  {
+   "name": "Община Петрич",
+   "home": "https://www.petrich.bg",
+   "oblast": "Благоевград"
+  },
+  {
+   "name": "Община Пещера",
+   "home": "http://www.peshtera.bg",
+   "oblast": "Пазарджик"
+  },
+  {
+   "name": "Община Пирдоп",
+   "home": "http://www.pirdop.bg/",
+   "oblast": "Софийска"
+  },
+  {
+   "name": "Община Плевен",
+   "home": "http://www.pleven.bg",
+   "oblast": "Плевен"
+  },
+  {
+   "name": "Община Пловдив",
+   "home": "http://www.plovdiv.bg/en/",
+   "oblast": "Пловдив"
+  },
+  {
+   "name": "Община Полски Тръмбеш",
+   "home": "https://www.trambesh.eu/",
+   "oblast": "Велико Търново"
+  },
+  {
+   "name": "Община Поморие",
+   "home": "http://www.pomorie.org/",
+   "oblast": "Бургас"
+  },
+  {
+   "name": "Община Попово",
+   "home": "http://www.popovo.bg",
+   "oblast": "Търговище"
+  },
+  {
+   "name": "Община Пордим",
+   "home": "https://www.pordim.bg",
+   "oblast": "Плевен"
+  },
+  {
+   "name": "Община Правец",
+   "home": "https://www.pravets.bg/",
+   "oblast": "Софийска"
+  },
+  {
+   "name": "Община Приморско",
+   "home": "http://www.primorsko.bg",
+   "oblast": "Бургас"
+  },
+  {
+   "name": "Община Провадия",
+   "home": "https://www.provadia.bg/",
+   "oblast": "Варна"
+  },
+  {
+   "name": "Община Първомай",
+   "home": "http://www.parvomai.bg/",
+   "oblast": "Пловдив"
+  },
+  {
+   "name": "Община Раднево",
+   "home": "https://radnevo.bg/",
+   "oblast": "Стара Загора"
+  },
+  {
+   "name": "Община Радомир",
+   "home": "https://www.radomir.bg",
+   "oblast": "Перник"
+  },
+  {
+   "name": "Община Разград",
+   "home": "https://www.razgrad.bg",
+   "oblast": "Разград"
+  },
+  {
+   "name": "Община Разлог",
+   "home": "https://www.razlog.bg",
+   "oblast": "Благоевград"
+  },
+  {
+   "name": "Община Ракитово",
+   "home": "https://rakitovo.bg/",
+   "oblast": "Пазарджик"
+  },
+  {
+   "name": "Община Раковски",
+   "home": "http://www.rakovski.bg",
+   "oblast": "Пловдив"
+  },
+  {
+   "name": "Община Рила",
+   "home": "https://grad-rila.bg",
+   "oblast": "Кюстендил"
+  },
+  {
+   "name": "Община Родопи",
+   "home": "http://www.rodopi-bg.org/",
+   "oblast": "Пловдив"
+  },
+  {
+   "name": "Община Роман",
+   "home": "https://www.roman.bg",
+   "oblast": "Враца"
+  },
+  {
+   "name": "Община Рудозем",
+   "home": "https://www.rudozem.bg/",
+   "oblast": "Смолян"
+  },
+  {
+   "name": "Община Руен",
+   "home": "https://ruen.egov.bg/wps/portal/municipality-ruen/home",
+   "oblast": "Бургас"
+  },
+  {
+   "name": "Община Ружинци",
+   "home": "http://obshtina-ruzhintsi.com/",
+   "oblast": "Видин"
+  },
+  {
+   "name": "Община Русе",
+   "home": "http://www.ruse-bg.eu/",
+   "oblast": "Русе"
+  },
+  {
+   "name": "Община Садово",
+   "home": "http://www.sadovo.bg/",
+   "oblast": "Пловдив"
+  },
+  {
+   "name": "Община Самоков",
+   "home": "http://www.samokov.bg/",
+   "oblast": "Софийска"
+  },
+  {
+   "name": "Община Самуил",
+   "home": "https://www.samuil.bg",
+   "oblast": "Разград"
+  },
+  {
+   "name": "Община Сандански",
+   "home": "https://sandanski.bg",
+   "oblast": "Благоевград"
+  },
+  {
+   "name": "Община Сапарева баня",
+   "home": "https://saparevabanya.bg/",
+   "oblast": "Кюстендил"
+  },
+  {
+   "name": "Община Сатовча",
+   "home": "http://www.satovcha.bg",
+   "oblast": "Благоевград"
+  },
+  {
+   "name": "Община Свиленград",
+   "home": "http://svilengrad.bg/",
+   "oblast": "Хасково"
+  },
+  {
+   "name": "Община Свищов",
+   "home": "http://www.svishtov.bg/",
+   "oblast": "Велико Търново"
+  },
+  {
+   "name": "Община Своге",
+   "home": "http://www.svoge.bg",
+   "oblast": "Софийска"
+  },
+  {
+   "name": "Община Севлиево",
+   "home": "http://www.sevlievo.bg/",
+   "oblast": "Габрово"
+  },
+  {
+   "name": "Община Септември",
+   "home": "http://www.septemvri.org/",
+   "oblast": "Пазарджик"
+  },
+  {
+   "name": "Община Силистра",
+   "home": "http://www.silistra.bg",
+   "oblast": "Силистра"
+  },
+  {
+   "name": "Община Симеоновград",
+   "home": "https://simeonovgrad.bg/",
+   "oblast": "Хасково"
+  },
+  {
+   "name": "Община Симитли",
+   "home": "https://simitli.bg/",
+   "oblast": "Благоевград"
+  },
+  {
+   "name": "Община Ситово",
+   "home": "http://www.sitovo.bg/sitovo.html",
+   "oblast": "Силистра"
+  },
+  {
+   "name": "Община Сливен",
+   "home": "http://www.sliven.bg/",
+   "oblast": "Сливен"
+  },
+  {
+   "name": "Община Сливница",
+   "home": "https://www.slivnitsa.bg/",
+   "oblast": "Софийска"
+  },
+  {
+   "name": "Община Сливо поле",
+   "home": "http://www.slivopole.ru-se.com/",
+   "oblast": "Русе"
+  },
+  {
+   "name": "Община Смолян",
+   "home": "http://www.smolyan.bg/",
+   "oblast": "Смолян"
+  },
+  {
+   "name": "Община Смядово",
+   "home": "http://www.smyadovo.bg/",
+   "oblast": "Шумен"
+  },
+  {
+   "name": "Община Созопол",
+   "home": "http://www.sozopol.bg/",
+   "oblast": "Бургас"
+  },
+  {
+   "name": "Община Сопот",
+   "home": "http://www.sopot-municipality.com",
+   "oblast": "Пловдив"
+  },
+  {
+   "name": "Община Средец",
+   "home": "http://sredets.bg/",
+   "oblast": "Бургас"
+  },
+  {
+   "name": "Община Стамболийски",
+   "home": "http://www.stamb.info/",
+   "oblast": "Пловдив"
+  },
+  {
+   "name": "Община Стамболово",
+   "home": "https://www.stambolovo.bg/",
+   "oblast": "Хасково"
+  },
+  {
+   "name": "Община Стара Загора",
+   "home": "https://www.starazagora.bg/",
+   "oblast": "Стара Загора"
+  },
+  {
+   "name": "Община Стражица",
+   "home": "http://strazhitsa.e-gov.bg/",
+   "oblast": "Велико Търново"
+  },
+  {
+   "name": "Община Стралджа",
+   "home": "https://www.straldzha.bg",
+   "oblast": "Ямбол"
+  },
+  {
+   "name": "Община Стрелча",
+   "home": "http://www.strelcha.bg",
+   "oblast": "Пазарджик"
+  },
+  {
+   "name": "Община Струмяни",
+   "home": "https://www.strumyani.org",
+   "oblast": "Благоевград"
+  },
+  {
+   "name": "Община Суворово",
+   "home": "http://www.suvorovo.bg/bg",
+   "oblast": "Варна"
+  },
+  {
+   "name": "Община Сунгурларе",
+   "home": "http://www.sungurlare.org/",
+   "oblast": "Бургас"
+  },
+  {
+   "name": "Община Сухиндол",
+   "home": "http://www.suhindol.bg/#",
+   "oblast": "Велико Търново"
+  },
+  {
+   "name": "Община Съединение",
+   "home": "https://saedinenie.bg/",
+   "oblast": "Пловдив"
+  },
+  {
+   "name": "Община Сърница",
+   "home": "http://www.sarnitsa.bg/",
+   "oblast": "Пазарджик"
+  },
+  {
+   "name": "Община Твърдица",
+   "home": "http://www.tvarditsa.org",
+   "oblast": "Сливен"
+  },
+  {
+   "name": "Община Тервел",
+   "home": "https://tervel.egov.bg/",
+   "oblast": "Добрич"
+  },
+  {
+   "name": "Община Тетевен",
+   "home": "http://www.teteven.bg/",
+   "oblast": "Ловеч"
+  },
+  {
+   "name": "Община Тополовград",
+   "home": "https://topolovgrad.bg/",
+   "oblast": "Хасково"
+  },
+  {
+   "name": "Община Трекляно",
+   "home": "https://www.trekliano.eu/",
+   "oblast": "Кюстендил"
+  },
+  {
+   "name": "Община Троян",
+   "home": "https://www.troyan.bg",
+   "oblast": "Ловеч"
+  },
+  {
+   "name": "Община Трън",
+   "home": "https://tran.bg/",
+   "oblast": "Перник"
+  },
+  {
+   "name": "Община Трявна",
+   "home": "http://www.tryavna.bg",
+   "oblast": "Габрово"
+  },
+  {
+   "name": "Община Тунджа",
+   "home": "http://www.tundzha.net/",
+   "oblast": "Ямбол"
+  },
+  {
+   "name": "Община Тутракан",
+   "home": "http://www.tutrakan.bg/",
+   "oblast": "Силистра"
+  },
+  {
+   "name": "Община Търговище",
+   "home": "https://targovishte.bg//",
+   "oblast": "Търговище"
+  },
+  {
+   "name": "Община Угърчин",
+   "home": "https://www.ugarchin.bg",
+   "oblast": "Ловеч"
+  },
+  {
+   "name": "Община Хаджидимово",
+   "home": "http://hadzhidimovo.com/",
+   "oblast": "Благоевград"
+  },
+  {
+   "name": "Община Хайредин",
+   "home": "https://www.hayredin.com",
+   "oblast": "Враца"
+  },
+  {
+   "name": "Община Харманли",
+   "home": "https://www.harmanli.bg/",
+   "oblast": "Хасково"
+  },
+  {
+   "name": "Община Хасково",
+   "home": "http://www.haskovo.bg/",
+   "oblast": "Хасково"
+  },
+  {
+   "name": "Община Хисаря",
+   "home": "http://www.hisar.bg",
+   "oblast": "Пловдив"
+  },
+  {
+   "name": "Община Хитрино",
+   "home": "http://www.hitrino.org/",
+   "oblast": "Шумен"
+  },
+  {
+   "name": "Община Цар Калоян",
+   "home": "https://tsarkaloyan.bg",
+   "oblast": "Разград"
+  },
+  {
+   "name": "Община Царево",
+   "home": "https://tsarevo.bg/",
+   "oblast": "Бургас"
+  },
+  {
+   "name": "Община Ценово",
+   "home": "http://tsenovo.eu/",
+   "oblast": "Русе"
+  },
+  {
+   "name": "Община Чавдар",
+   "home": "http://www.chavdar.eu/",
+   "oblast": "Софийска"
+  },
+  {
+   "name": "Община Челопеч",
+   "home": "https://chelopech.egov.bg/",
+   "oblast": "Софийска"
+  },
+  {
+   "name": "Община Чепеларе",
+   "home": "http://chepelare.org",
+   "oblast": "Смолян"
+  },
+  {
+   "name": "Община Червен бряг",
+   "home": "https://www.chervenbryag.bg/",
+   "oblast": "Плевен"
+  },
+  {
+   "name": "Община Черноочене",
+   "home": "https://chernoochene.com/",
+   "oblast": "Кърджали"
+  },
+  {
+   "name": "Община Чипровци",
+   "home": "https://www.chiprovtsi.bg/",
+   "oblast": "Монтана"
+  },
+  {
+   "name": "Община Чирпан",
+   "home": "https://www.chirpan.bg/bg/",
+   "oblast": "Стара Загора"
+  },
+  {
+   "name": "Община Чупрене",
+   "home": "https://www.chuprene.com/",
+   "oblast": "Видин"
+  },
+  {
+   "name": "Община Шабла",
+   "home": "https://shabla.bg/",
+   "oblast": "Добрич"
+  },
+  {
+   "name": "Община Шумен",
+   "home": "http://www.oblastshumen.icon.bg/en/",
+   "oblast": "Шумен"
+  },
+  {
+   "name": "Община Ябланица",
+   "home": "https://yablanitsa.bg/",
+   "oblast": "Ловеч"
+  },
+  {
+   "name": "Община Якимово",
+   "home": "http://yakimovo.org",
+   "oblast": "Монтана"
+  },
+  {
+   "name": "Община Якоруда",
+   "home": "http://yakoruda.gateway.bg/",
+   "oblast": "Благоевград"
+  },
+  {
+   "name": "Община Ямбол",
+   "home": "http://www.yambol.bg/",
+   "oblast": "Ямбол"
+  },
+  {
+   "name": "Столична община",
+   "home": "http://www.sofia.bg",
+   "oblast": "София Столица"
+  }
+ ]
+}
