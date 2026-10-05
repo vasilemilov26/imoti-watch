@@ -13,8 +13,7 @@ import urllib3
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 log = logging.getLogger(__name__)
 
-UA = ("Mozilla/5.0 (compatible; ImotiWatch/1.0; +https://github.com/; "
-      "мониторинг на публични обяви за търгове)")
+   UA = "Mozilla/5.0 (compatible; ImotiWatch/1.0; public auction notices monitor)"
 TIMEOUT = 25
 MAX_BYTES = 12 * 1024 * 1024
 PER_HOST_DELAY = 1.0  # seconds between requests to the same host
