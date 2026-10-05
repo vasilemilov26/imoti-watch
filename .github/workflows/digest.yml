@@ -1,0 +1,38 @@
+name: Сутрешен имейл
+
+on:
+  schedule:
+    - cron: "40 4 * * *"      # 07:40 лятно / 06:40 зимно българско време
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: data-writer
+  cancel-in-progress: false
+
+jobs:
+  digest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install PyYAML
+      - name: Send digest
+        env:
+          SMTP_USER: ${{ secrets.SMTP_USER }}
+          SMTP_PASS: ${{ secrets.SMTP_PASS }}
+          MAIL_TO: ${{ secrets.MAIL_TO }}
+          DASHBOARD_URL: https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/
+        run: python -m scanner.digest
+      - name: Commit
+        run: |
+          git config user.name "imoti-watch-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add -A state docs/digests
+          git diff --cached --quiet && exit 0
+          git commit -m "digest $(date -u +%F)"
+          for i in 1 2 3; do git pull --rebase -X theirs && git push && break; sleep 5; done
