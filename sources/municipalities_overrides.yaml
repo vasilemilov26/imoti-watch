@@ -1,0 +1,19 @@
+# Списъкът с 265-те общини и сайтовете им се зарежда автоматично от Wikidata
+# (sources/municipalities.auto.json, обновява се веднъж седмично).
+# Тук може да:
+#   * поправите сайт:          - {name: Община Козлодуй, home: "https://kozloduy.bg/"}
+#   * посочите точна страница: - {name: Община Плевен, urls: ["https://www.pleven.bg/..."]}
+#   * изключите община:        - {name: Община X, enabled: false}
+# `name` трябва да съвпада с името от Wikidata (обикновено „Община <град>“).
+overrides:
+  - {name: Община Плевен, home: "https://www.pleven.bg/"}
+  - {name: Община Козлодуй, home: "https://kozloduy.bg/"}
+  - {name: Столична община, home: "https://www.sofia.bg/"}
+  - {name: Община Пловдив, home: "https://www.plovdiv.bg/"}
+  - {name: Община Варна, home: "https://www.varna.bg/"}
+  - {name: Община Бургас, home: "https://www.burgas.bg/"}
+  - {name: Община Русе, home: "https://www.ruse.bg/"}
+  - {name: Община Ловеч, home: "https://www.lovech.bg/"}
+  - {name: Община Враца, home: "https://www.vratsa.bg/"}
+  - {name: Община Лом, home: "https://www.lom.bg/"}
+  - {name: Община Благоевград, home: "https://blagoevgrad.bg/"}

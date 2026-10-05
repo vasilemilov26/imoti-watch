@@ -1,0 +1,31 @@
+# 28 областни администрации (имоти – държавна собственост). Скенерът сам намира секцията „Търгове“.
+# Ако знаете точната страница с търгове, добавете я като `urls: [...]` и `kind: generic`.
+sources:
+  - {id: oa-blagoevgrad, name: Областна администрация Благоевград, oblast: Благоевград, category: oblast, kind: discover, home: "http://www.bl.government.bg/"}
+  - {id: oa-burgas, name: Областна администрация Бургас, oblast: Бургас, category: oblast, kind: discover, home: "http://www.bsregion.org/"}
+  - {id: oa-varna, name: Областна администрация Варна, oblast: Варна, category: oblast, kind: discover, home: "http://www.vn.government.bg/"}
+  - {id: oa-vtarnovo, name: Областна администрация Велико Търново, oblast: Велико Търново, category: oblast, kind: discover, home: "http://www.vt.government.bg/"}
+  - {id: oa-vidin, name: Областна администрация Видин, oblast: Видин, category: oblast, kind: discover, home: "https://vidin.government.bg/"}
+  - {id: oa-vratsa, name: Областна администрация Враца, oblast: Враца, category: oblast, kind: discover, home: "https://vratsa.government.bg/"}
+  - {id: oa-gabrovo, name: Областна администрация Габрово, oblast: Габрово, category: oblast, kind: discover, home: "http://www.gb.government.bg/"}
+  - {id: oa-dobrich, name: Областна администрация Добрич, oblast: Добрич, category: oblast, kind: discover, home: "http://dobrich.government.bg/"}
+  - {id: oa-kardzhali, name: Областна администрация Кърджали, oblast: Кърджали, category: oblast, kind: discover, home: "https://kardzhali.org/newsite/"}
+  - {id: oa-kyustendil, name: Областна администрация Кюстендил, oblast: Кюстендил, category: oblast, kind: discover, home: "https://kn.egov.bg/"}
+  - {id: oa-lovech, name: Областна администрация Ловеч, oblast: Ловеч, category: oblast, kind: discover, home: "http://lovech.government.bg/"}
+  - {id: oa-montana, name: Областна администрация Монтана, oblast: Монтана, category: oblast, kind: discover, home: "http://oblastmontana.org/"}
+  - {id: oa-pazardzhik, name: Областна администрация Пазарджик, oblast: Пазарджик, category: oblast, kind: discover, home: "http://www.pz.government.bg/"}
+  - {id: oa-pernik, name: Областна администрация Перник, oblast: Перник, category: oblast, kind: discover, home: "https://pk.government.bg/"}
+  - {id: oa-pleven, name: Областна администрация Плевен, oblast: Плевен, category: oblast, kind: generic, urls: ["https://www.pleven-oblast.bg/section-381-content.html"], home: "https://www.pleven-oblast.bg/"}
+  - {id: oa-plovdiv, name: Областна администрация Пловдив, oblast: Пловдив, category: oblast, kind: discover, home: "http://www.pd.government.bg/"}
+  - {id: oa-razgrad, name: Областна администрация Разград, oblast: Разград, category: oblast, kind: discover, home: "http://www.rz.government.bg/"}
+  - {id: oa-ruse, name: Областна администрация Русе, oblast: Русе, category: oblast, kind: discover, home: "https://www.ruse.government.bg/"}
+  - {id: oa-silistra, name: Областна администрация Силистра, oblast: Силистра, category: oblast, kind: discover, home: "http://silistra.government.bg/"}
+  - {id: oa-sliven, name: Областна администрация Сливен, oblast: Сливен, category: oblast, kind: discover, home: "http://www.sliven.government.bg/"}
+  - {id: oa-smolyan, name: Областна администрация Смолян, oblast: Смолян, category: oblast, kind: discover, home: "http://www.region-smolyan.org/"}
+  - {id: oa-stzagora, name: Областна администрация Стара Загора, oblast: Стара Загора, category: oblast, kind: discover, home: "http://www.sz.government.bg/"}
+  - {id: oa-sofia-grad, name: Областна администрация София-град, oblast: София-град, category: oblast, kind: discover, home: "http://www.sfoblast.government.bg/"}
+  - {id: oa-sofia-oblast, name: Областна администрация Софийска област, oblast: Софийска, category: oblast, kind: discover, home: "http://www.sofoblast.government.bg/"}
+  - {id: oa-targovishte, name: Областна администрация Търговище, oblast: Търговище, category: oblast, kind: discover, home: "http://www.tg.government.bg/"}
+  - {id: oa-haskovo, name: Областна администрация Хасково, oblast: Хасково, category: oblast, kind: discover, home: "http://www.hs.government.bg/"}
+  - {id: oa-shumen, name: Областна администрация Шумен, oblast: Шумен, category: oblast, kind: discover, home: "https://shumenoblast.egov.bg/"}
+  - {id: oa-yambol, name: Областна администрация Ямбол, oblast: Ямбол, category: oblast, kind: discover, home: "http://www.yambol.government.bg/"}

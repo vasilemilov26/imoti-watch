@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="bg">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Имоти на търг</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.3/MarkerCluster.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.3/MarkerCluster.Default.min.css">
+<style>
+:root{--bg:#f6f7f9;--card:#fff;--ink:#1b1f24;--mut:#5f6b7a;--line:#e3e6ea;--acc:#1f5fbf;--new:#0a7d38;--warn:#b25b00;--bad:#b3261e}
+@media (prefers-color-scheme:dark){:root{--bg:#121417;--card:#1b1e23;--ink:#e8eaed;--mut:#9aa4b1;--line:#2c3138;--acc:#7fb0ff;--new:#4cc97a;--warn:#f0a443;--bad:#ff7b72}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.45 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+header{padding:14px 16px 8px;display:flex;flex-wrap:wrap;gap:8px 20px;align-items:baseline}
+h1{font-size:20px;margin:0}
+.meta{color:var(--mut);font-size:13px}
+nav.tabs{display:flex;gap:4px;padding:0 16px;border-bottom:1px solid var(--line)}
+nav.tabs button{background:none;border:0;padding:8px 12px;font:inherit;color:var(--mut);cursor:pointer;border-bottom:2px solid transparent}
+nav.tabs button.on{color:var(--ink);border-color:var(--acc);font-weight:600}
+.filters{display:flex;flex-wrap:wrap;gap:8px;padding:12px 16px;align-items:center}
+.filters input,.filters select{font:inherit;padding:6px 8px;border:1px solid var(--line);border-radius:6px;background:var(--card);color:var(--ink)}
+.filters input[type=search]{min-width:220px;flex:1}
+.filters label{color:var(--mut);font-size:13px;display:flex;gap:4px;align-items:center}
+.count{color:var(--mut);font-size:13px;margin-left:auto}
+main{padding:0 16px 24px}
+.view{display:none}.view.on{display:block}
+table{width:100%;border-collapse:collapse;background:var(--card);border:1px solid var(--line);border-radius:8px;overflow:hidden}
+th,td{text-align:left;padding:8px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:12px;color:var(--mut);font-weight:600;cursor:pointer;user-select:none;white-space:nowrap;background:var(--card);position:sticky;top:0}
+td.num{text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
+td a{color:var(--acc);text-decoration:none;font-weight:600}
+.sub{color:var(--mut);font-size:12px}
+.tag{display:inline-block;padding:1px 6px;border-radius:10px;font-size:11px;border:1px solid var(--line);color:var(--mut);margin-right:4px;white-space:nowrap}
+.tag.new{color:var(--new);border-color:var(--new)}
+.tag.unsuccessful{color:var(--warn);border-color:var(--warn)}
+.tag.gone,.tag.cancelled{color:var(--bad);border-color:var(--bad)}
+.tag.sold{color:var(--mut)}
+#map{height:calc(100vh - 210px);min-height:420px;border-radius:8px;border:1px solid var(--line)}
+.more{display:block;margin:12px auto;padding:8px 16px;font:inherit;border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:6px;cursor:pointer}
+.ok{color:var(--new)}.err{color:var(--bad)}
+.wrap{overflow-x:auto}
+@media (max-width:700px){.hide-m{display:none}.filters input[type=search]{min-width:100%}}
+</style>
+</head>
+<body>
+<header>
+  <h1>Имоти на търг – България</h1>
+  <span class="meta" id="meta">зареждане…</span>
+</header>
+<nav class="tabs">
+  <button data-v="table" class="on">Таблица</button>
+  <button data-v="map">Карта</button>
+  <button data-v="sources">Източници</button>
+</nav>
+<div class="filters" id="filters">
+  <input type="search" id="q" placeholder="Търси: населено място, идентификатор, текст…">
+  <select id="cat"><option value="">Всички източници</option></select>
+  <select id="deal"><option value="">Всички сделки</option><option value="sale">Продажба</option><option value="lease">Наем/аренда</option><option value="concession">Концесия</option></select>
+  <select id="ptype"><option value="">Всички видове</option></select>
+  <select id="obl"><option value="">Всички области</option></select>
+  <select id="status"><option value="open">Активни</option><option value="">Всички</option><option value="unsuccessful">Неуспешни</option><option value="sold">Продадени</option><option value="gone">Премахнати</option></select>
+  <select id="age"><option value="">Всякаква давност</option><option value="1">Нови днес</option><option value="7">Последните 7 дни</option><option value="30">Последните 30 дни</option></select>
+  <label>макс. цена € <input type="number" id="pmax" style="width:110px" min="0" step="1000"></label>
+  <label>мин. площ м² <input type="number" id="amin" style="width:100px" min="0" step="100"></label>
+  <span class="count" id="count"></span>
+</div>
+<main>
+  <section class="view on" id="v-table"><div class="wrap"><table>
+    <thead><tr>
+      <th data-s="title">Обява</th><th data-s="price_eur" class="num">Цена</th><th data-s="area_m2" class="num hide-m">Площ</th>
+      <th data-s="eurm2" class="num hide-m">€/м²</th><th data-s="auction_date">Търг</th><th data-s="first_seen" class="hide-m">Открита</th>
+    </tr></thead><tbody id="rows"></tbody></table></div>
+    <button class="more" id="more">Покажи още</button>
+  </section>
+  <section class="view" id="v-map"><div id="map"></div><p class="sub">Местоположението е по населено място (ЕКАТТЕ), не по точния парцел. Обяви без населено място не са на картата.</p></section>
+  <section class="view" id="v-sources"><div class="wrap"><table><thead><tr><th>Източник</th><th>Вид</th><th>Състояние</th><th class="num">Намерени</th><th class="num">Нови</th><th class="hide-m">Страници</th></tr></thead><tbody id="srows"></tbody></table></div></section>
+</main>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.3/leaflet.markercluster.min.js"></script>
+<script>
+const CAT={apk:"АППК",chsi:"ЧСИ",nap:"НАП",darzhava:"Министерства/агенции",oblast:"Области",obshtina:"Общини",dp:"Държавни дружества",koncesii:"Концесии",zemya:"Земеделска земя (ДПФ)",agregator:"Агрегатор"};
+const DEAL={sale:"Продажба",lease:"Наем/аренда",concession:"Концесия"};
+const PT={land:"Парцел/УПИ",agri:"Земеделска",building:"Сграда",apartment:"Жилище",garage:"Гараж",other:"Друго"};
+const ST={active:"",unsuccessful:"неуспешен",cancelled:"прекратен",sold:"продаден",gone:"премахната"};
+let ALL=[],VIEW=[],shown=200,sortKey="first_seen",sortDir=-1,map,cluster;
+const $=id=>document.getElementById(id);
+const esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const money=v=>v?Math.round(v).toLocaleString("bg-BG")+" €":"—";
+const area=v=>!v?"—":v>=10000?(v/1000).toLocaleString("bg-BG",{maximumFractionDigits:1})+" дка":Math.round(v).toLocaleString("bg-BG")+" м²";
+const daysAgo=s=>(Date.now()-new Date(s))/864e5;
+function load(){
+  Promise.all([fetch("data/items.json").then(r=>r.json()).catch(()=>[]),fetch("data/meta.json").then(r=>r.json()).catch(()=>({})),fetch("data/sources.json").then(r=>r.json()).catch(()=>[])])
+  .then(([items,meta,srcs])=>{
+    ALL=items.filter(i=>!i.irrelevant);
+    ALL.forEach(i=>{i.eurm2=(i.price_eur&&i.area_m2)?i.price_eur/i.area_m2:null;i._t=(i.title+" "+(i.snippet||"")+" "+(i.settlement||"")+" "+(i.municipality||"")+" "+(i.oblast||"")+" "+(i.cadastral_ids||[]).join(" ")+" "+i.source).toLowerCase()});
+    $("meta").textContent=meta.last_scan?`последно сканиране ${new Date(meta.last_scan).toLocaleString("bg-BG")} · ${meta.items} обяви · ${meta.sources_ok}/${meta.sources} източника работят`:"още няма данни – изчакайте първото сканиране";
+    fillSel("cat",[...new Set(ALL.map(i=>i.category))].map(c=>[c,CAT[c]||c]));
+    fillSel("ptype",Object.entries(PT));
+    fillSel("obl",[...new Set(ALL.map(i=>i.oblast).filter(Boolean))].sort((a,b)=>a.localeCompare(b,"bg")).map(o=>[o,o]));
+    renderSources(srcs);restore();apply();
+  });
+}
+function fillSel(id,pairs){const s=$(id);pairs.forEach(([v,t])=>{const o=document.createElement("option");o.value=v;o.textContent=t;s.appendChild(o)})}
+const F=["q","cat","deal","ptype","obl","status","age","pmax","amin"];
+function save(){try{localStorage.setItem("imoti-f",JSON.stringify(Object.fromEntries(F.map(f=>[f,$(f).value]))))}catch(e){}}
+function restore(){try{const o=JSON.parse(localStorage.getItem("imoti-f")||"{}");F.forEach(f=>{if(o[f]!=null)$(f).value=o[f]})}catch(e){}}
+function apply(){
+  const q=$("q").value.toLowerCase().trim().split(/\s+/).filter(Boolean),cat=$("cat").value,deal=$("deal").value,pt=$("ptype").value,obl=$("obl").value,st=$("status").value,age=+$("age").value,pmax=+$("pmax").value,amin=+$("amin").value;
+  VIEW=ALL.filter(i=>{
+    if(st==="open"){if(i.archived||!(i.status==="active"))return false}else if(st&&i.status!==st)return false;
+    if(cat&&i.category!==cat)return false; if(deal&&i.deal!==deal)return false; if(pt&&i.ptype!==pt)return false;
+    if(obl&&i.oblast!==obl&&!i._t.includes(obl.toLowerCase()))return false;
+    if(age&&daysAgo(i.first_seen)>age)return false;
+    if(pmax&&(!i.price_eur||i.price_eur>pmax))return false;
+    if(amin&&(!i.area_m2||i.area_m2<amin))return false;
+    return q.every(w=>i._t.includes(w));
+  });
+  VIEW.sort((a,b)=>{let x=a[sortKey],y=b[sortKey];if(x==null)return 1;if(y==null)return -1;return (x>y?1:x<y?-1:0)*sortDir});
+  shown=200;$("count").textContent=VIEW.length.toLocaleString("bg-BG")+" обяви";save();renderTable();if(map)renderMap();
+}
+function rowHtml(i){
+  const isNew=daysAgo(i.first_seen)<2;
+  const loc=[i.settlement,i.municipality,i.oblast].filter(Boolean).join(", ");
+  const tags=(isNew?'<span class="tag new">нова</span>':"")+(ST[i.status]?`<span class="tag ${i.status}">${ST[i.status]}</span>`:"")+`<span class="tag">${CAT[i.category]||i.category}</span>`+(i.deal?`<span class="tag">${DEAL[i.deal]}</span>`:"")+(i.ptype?`<span class="tag">${PT[i.ptype]}</span>`:"");
+  const cad=(i.cadastral_ids||[]).slice(0,3).join(", ");
+  return `<tr><td><a href="${esc(i.url)}" target="_blank" rel="noopener">${esc(i.title.slice(0,180))}</a><div class="sub">${esc(loc)}${loc?" · ":""}${esc(i.source)}${cad?" · "+cad:""}</div><div>${tags}</div></td>
+  <td class="num">${money(i.price_eur)}</td><td class="num hide-m">${area(i.area_m2)}</td><td class="num hide-m">${i.eurm2?i.eurm2.toFixed(i.eurm2<10?2:0)+" €":"—"}</td>
+  <td>${i.auction_date?new Date(i.auction_date).toLocaleDateString("bg-BG"):"—"}${i.deadline?`<div class="sub">док. до ${new Date(i.deadline).toLocaleDateString("bg-BG")}</div>`:""}</td>
+  <td class="hide-m sub">${new Date(i.first_seen).toLocaleDateString("bg-BG")}</td></tr>`;
+}
+function renderTable(){$("rows").innerHTML=VIEW.slice(0,shown).map(rowHtml).join("")||'<tr><td colspan="6" class="sub">Няма обяви по тези филтри.</td></tr>';$("more").style.display=VIEW.length>shown?"block":"none"}
+function initMap(){
+  map=L.map("map").setView([42.7,25.3],7);
+  L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",{maxZoom:18,attribution:"© OpenStreetMap"}).addTo(map);
+  cluster=L.markerClusterGroup({maxClusterRadius:40});map.addLayer(cluster);renderMap();
+}
+function renderMap(){
+  cluster.clearLayers();
+  VIEW.filter(i=>i.lat).slice(0,8000).forEach(i=>{
+    const j=()=>(Math.random()-.5)*0.004;
+    L.marker([i.lat+j(),i.lon+j()]).bindPopup(`<b><a href="${esc(i.url)}" target="_blank">${esc(i.title.slice(0,140))}</a></b><br>${esc([i.settlement,i.oblast].filter(Boolean).join(", "))}<br>${money(i.price_eur)} · ${area(i.area_m2)}${i.auction_date?"<br>търг: "+i.auction_date:""}<br><span style="color:#777">${esc(i.source)}</span>`).addTo(cluster);
+  });
+}
+function renderSources(s){
+  $("srows").innerHTML=s.map(h=>`<tr><td><b>${esc(h.name)}</b>${h.home?`<div class="sub"><a href="${esc(h.home)}" target="_blank">${esc(h.home)}</a></div>`:""}</td><td class="sub">${CAT[h.category]||h.category}</td>
+  <td class="${h.ok?"ok":"err"}">${h.ok?"✓ работи":"✗ "+esc(h.error||"")}</td><td class="num">${h.found??""}</td><td class="num">${h.new??""}</td>
+  <td class="hide-m sub">${(h.pages||[]).slice(0,3).map(p=>`<a href="${esc(p)}" target="_blank">${esc(p.replace(/^https?:\/\//,"").slice(0,60))}</a>`).join("<br>")}</td></tr>`).join("");
+}
+document.querySelectorAll("nav.tabs button").forEach(b=>b.onclick=()=>{document.querySelectorAll("nav.tabs button").forEach(x=>x.classList.toggle("on",x===b));document.querySelectorAll(".view").forEach(v=>v.classList.toggle("on",v.id==="v-"+b.dataset.v));$("filters").style.display=b.dataset.v==="sources"?"none":"flex";if(b.dataset.v==="map"){if(!map)initMap();else map.invalidateSize()}});
+document.querySelectorAll("th[data-s]").forEach(th=>th.onclick=()=>{const k=th.dataset.s;sortDir=sortKey===k?-sortDir:-1;sortKey=k;apply()});
+F.forEach(f=>$(f).addEventListener(f==="q"||f==="pmax"||f==="amin"?"input":"change",apply));
+$("more").onclick=()=>{shown+=300;renderTable()};
+load();
+</script>
+</body>
+</html>

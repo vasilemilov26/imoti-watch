@@ -1,0 +1,14 @@
+# Какво да се откроява в сутрешния имейл (⭐). Всички обяви остават в таблото.
+# Оставете списък празен ([]), за да не филтрира по този критерий.
+
+highlight:
+  oblasti: [Плевен, Ловеч, Враца, Велико Търново]   # области с приоритет
+  deals: [sale, lease, concession]                   # sale | lease | concession
+  types: [land, agri, building, apartment, other]    # land=УПИ/парцел, agri=земеделска, building, apartment, garage, other
+  max_price_eur: null                                # напр. 500000
+  min_area_m2: null                                  # напр. 1000
+  keywords: [индустриална зона, промишлен, склад, хале]   # дума в текста = винаги ⭐
+
+digest:
+  only_highlighted: false   # true = в имейла само ⭐ обяви
+  max_items: 300

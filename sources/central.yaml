@@ -1,0 +1,275 @@
+# Централни източници. Всеки запис:
+#   id        – уникален ключ (латиница)
+#   name      – име за показване
+#   category  – apk | chsi | nap | darzhava | oblast | obshtina | dp | koncesii | zemya | agregator
+#   kind      – cards  (списък с карти + страниране, виж parsers/cards.py)
+#             – generic (страница/и с обяви – търсят се нови връзки/текстове)
+#             – discover (дава се само начална страница; скенерът сам намира секцията с търгове)
+#   urls      – конкретни страници (за generic/cards)
+#   home      – начална страница (за discover)
+#   enabled   – false = пропуска се
+#
+# Добавяйте свободно нови източници – най-лесно като kind: discover с home: <сайт>.
+
+sources:
+  # ---------------- АППК ----------------
+  - id: appk-upcoming
+    group: appk-e
+    name: АППК – предстоящи търгове (е-платформа)
+    category: apk
+    kind: cards
+    urls: ["https://estate-sales.uslugi.io/upcoming-public"]
+    item_link: "/upcoming-public/view/\\d+"
+    detail: true
+    page_param: page
+    max_pages: 50
+  - id: appk-current
+    group: appk-e
+    name: АППК – текущи търгове (е-платформа)
+    category: apk
+    kind: cards
+    urls: ["https://estate-sales.uslugi.io/public-bidding"]
+    item_link: "/(public-bidding|upcoming-public|past-public)/view/\\d+"
+    page_param: page
+    max_pages: 20
+  - id: appk-past
+    group: appk-e
+    name: АППК – приключили търгове (резултати)
+    category: apk
+    kind: cards
+    urls: ["https://estate-sales.uslugi.io/past-public"]
+    item_link: "/past-public/view/\\d+"
+    page_param: page
+    max_pages: 10
+    results_only: true      # обновява статуса (успешен/неуспешен) на вече известни търгове
+  - id: appk-publprodajbi
+    name: АППК – публични продажби по изпълнителни дела
+    category: apk
+    kind: generic
+    urls: ["https://appk.government.bg/bg/publprodajbi"]
+  - id: appk-privatizacia
+    name: АППК – приватизация (текущи проекти)
+    category: apk
+    kind: generic
+    urls: ["https://appk.government.bg/bg/80"]
+
+  # ---------------- Принудителни продажби ----------------
+  - id: bcpea
+    name: ЧСИ – Камара на частните съдебни изпълнители (имоти)
+    category: chsi
+    kind: cards
+    urls: ["https://sales.bcpea.org/properties"]
+    item_link: "/properties/\\d+$"
+    page_param: p
+    extra_params: {perpage: 48}
+    max_pages: 400
+  - id: nap
+    name: НАП – портал за продажби (недвижими имоти)
+    category: nap
+    kind: cards
+    urls: ["https://sales.nra.bg/realestate"]
+    item_link: "/(realestate|sale|sales|auction|item|view)[/?][^\"']*\\d+"
+    page_param: page
+    max_pages: 60
+  - id: izpalniteli
+    name: izpalniteli.com – агрегатор (ЧСИ, НАП, ДСИ, синдици)
+    category: agregator
+    kind: generic
+    urls: ["https://izpalniteli.com/targove/"]
+    enabled: false   # частен сайт – включете само ако приемате условията му
+
+  # ---------------- Министерства и агенции ----------------
+  - id: mo
+    name: Министерство на отбраната – имоти
+    category: darzhava
+    kind: generic
+    urls: ["https://www.mod.bg/bg/property_2021.html"]
+  - id: mrrb
+    name: МРРБ
+    category: darzhava
+    kind: discover
+    home: "https://www.mrrb.bg/"
+  - id: mzh
+    name: МЗХ – Държавен поземлен фонд
+    category: zemya
+    kind: discover
+    home: "https://www.mzh.government.bg/bg/"
+  - id: mvr
+    name: МВР
+    category: darzhava
+    kind: discover
+    home: "https://www.mvr.bg/"
+  - id: mjs
+    name: Министерство на правосъдието
+    category: darzhava
+    kind: discover
+    home: "https://www.justice.government.bg/"
+  - id: mi
+    name: Министерство на икономиката и индустрията
+    category: darzhava
+    kind: discover
+    home: "https://www.mi.government.bg/"
+  - id: me
+    name: Министерство на енергетиката
+    category: darzhava
+    kind: discover
+    home: "https://www.me.government.bg/"
+  - id: mtc
+    name: Министерство на транспорта и съобщенията
+    category: darzhava
+    kind: discover
+    home: "https://www.mtc.government.bg/"
+  - id: mon
+    name: Министерство на образованието
+    category: darzhava
+    kind: discover
+    home: "https://www.mon.bg/"
+  - id: mh
+    name: Министерство на здравеопазването
+    category: darzhava
+    kind: discover
+    home: "https://www.mh.government.bg/"
+  - id: mtitc
+    name: Министерство на туризма
+    category: darzhava
+    kind: discover
+    home: "https://www.tourism.government.bg/"
+  - id: customs
+    name: Агенция „Митници“ – продажби
+    category: darzhava
+    kind: discover
+    home: "https://customs.bg/"
+  - id: ciaf
+    name: КОНПИ (отнето имущество)
+    category: darzhava
+    kind: discover
+    home: "https://www.caciaf.bg/"
+  - id: azhs
+    name: Агенция по геодезия, картография и кадастър
+    category: darzhava
+    kind: discover
+    home: "https://www.cadastre.bg/"
+
+  # ---------------- Концесии ----------------
+  - id: nkr
+    name: Национален концесионен регистър
+    category: koncesii
+    kind: generic
+    urls: ["https://nkr.government.bg/Publications"]
+
+  # ---------------- Държавни предприятия и дружества ----------------
+  - id: bdz
+    name: БДЖ
+    category: dp
+    kind: discover
+    home: "https://www.bdz.bg/"
+  - id: nkzhi
+    name: НКЖИ (ДП Национална компания Железопътна инфраструктура)
+    category: dp
+    kind: discover
+    home: "https://www.rail-infra.bg/"
+  - id: fzd
+    name: ДП „Фонд затворно дело“
+    category: dp
+    kind: discover
+    home: "https://dpfzd.com/"
+  - id: zeminvest
+    name: Земинвест ЕАД
+    category: dp
+    kind: discover
+    home: "https://zeminvest.bg/"
+  - id: bulpost
+    name: Български пощи
+    category: dp
+    kind: discover
+    home: "https://www.bgpost.bg/"
+  - id: bulgartabac
+    name: Булгартабак холдинг
+    category: dp
+    kind: discover
+    home: "https://www.bulgartabac.bg/"
+  - id: beh
+    name: Български енергиен холдинг
+    category: dp
+    kind: discover
+    home: "https://www.bgenh.com/"
+  - id: nek
+    name: НЕК
+    category: dp
+    kind: discover
+    home: "https://www.nek.bg/"
+  - id: eso
+    name: ЕСО
+    category: dp
+    kind: discover
+    home: "https://www.eso.bg/"
+  - id: bvik
+    name: Български ВиК холдинг
+    category: dp
+    kind: discover
+    home: "https://bwsh.bg/"
+  - id: dppi
+    name: ДП Пристанищна инфраструктура
+    category: dp
+    kind: discover
+    home: "https://www.bgports.bg/"
+  - id: rpi
+    name: ДП „Ръководство на въздушното движение“
+    category: dp
+    kind: discover
+    home: "https://www.bulatsa.com/"
+  - id: kintex
+    name: Кинтекс
+    category: dp
+    kind: discover
+    home: "https://www.kintex.bg/"
+  - id: terem
+    name: Терем – Холдинг
+    category: dp
+    kind: discover
+    home: "https://www.terem.bg/"
+  - id: vmz
+    name: ВМЗ
+    category: dp
+    kind: discover
+    home: "https://www.vmz.bg/"
+  - id: monetendvor
+    name: Монетен двор
+    category: dp
+    kind: discover
+    home: "https://www.mint.bg/"
+  - id: szdp
+    name: СЗДП (Северозападно държавно предприятие)
+    category: dp
+    kind: discover
+    home: "https://szdp.bg/"
+  - id: scdp
+    name: СЦДП (Северноцентрално държавно предприятие)
+    category: dp
+    kind: discover
+    home: "https://www.scdp.bg/"
+  - id: uzdp
+    name: ЮЗДП (Югозападно държавно предприятие)
+    category: dp
+    kind: discover
+    home: "http://www.uzdp.bg/bg/"
+  - id: sidp
+    name: СИДП (Североизточно държавно предприятие)
+    category: dp
+    kind: discover
+    home: "https://www.sidp.bg/"
+  - id: uidp
+    name: ЮИДП (Югоизточно държавно предприятие)
+    category: dp
+    kind: discover
+    home: "https://www.uidp-sliven.org/"
+  - id: ucdp
+    name: ЮЦДП (Южноцентрално държавно предприятие)
+    category: dp
+    kind: discover
+    home: "https://ucdp-smolian.com/"
+  - id: dkk
+    name: ДП „Държавна консолидационна компания“
+    category: dp
+    kind: discover
+    home: "https://www.dkk.bg/"
