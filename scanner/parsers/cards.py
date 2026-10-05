@@ -5,7 +5,7 @@ import logging
 import re
 
 from .. import fetch
-from ..textutil import abs_url, clean, soup_of
+from ..textutil import abs_url, base_of, clean, soup_of
 
 log = logging.getLogger(__name__)
 
@@ -26,6 +26,7 @@ def _card_for(a, item_rx: re.Pattern, base: str):
 
 def parse_cards(page_url: str, html: str, item_rx: re.Pattern) -> list[dict]:
     soup = soup_of(html)
+    page_url = base_of(soup, page_url)
     out, seen = [], set()
     for a in soup.find_all("a", href=True):
         if not item_rx.search(a["href"]):

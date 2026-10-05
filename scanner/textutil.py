@@ -39,6 +39,14 @@ def main_text(html: str) -> str:
     return clean(main.get_text(" ", strip=True))
 
 
+def base_of(soup, page_url: str) -> str:
+    """Honour <base href> – many municipal CMSs use it, plain urljoin then builds /bg/bg/... 404s."""
+    b = soup.find("base", href=True)
+    if b and b["href"].strip():
+        return urljoin(page_url, b["href"].strip())
+    return page_url
+
+
 def abs_url(base: str, href: str) -> str | None:
     if not href:
         return None

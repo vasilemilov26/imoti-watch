@@ -7,7 +7,7 @@ from urllib.parse import urlparse
 
 from . import fetch
 from .extract import is_relevant
-from .textutil import abs_url, clean, soup_of
+from .textutil import abs_url, base_of, clean, soup_of
 
 log = logging.getLogger(__name__)
 
@@ -35,10 +35,11 @@ def _score(text: str, href: str) -> int:
 
 def candidate_links(page_url: str, html: str, same_site: bool = True) -> list[tuple[int, str, str]]:
     soup = soup_of(html)
+    base = base_of(soup, page_url)
     host = urlparse(page_url).netloc.replace("www.", "")
     seen, out = set(), []
     for a in soup.find_all("a", href=True):
-        url = abs_url(page_url, a["href"])
+        url = abs_url(base, a["href"])
         if not url or url in seen:
             continue
         seen.add(url)

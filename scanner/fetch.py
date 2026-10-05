@@ -14,6 +14,9 @@ urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 log = logging.getLogger(__name__)
 
 UA = "Mozilla/5.0 (compatible; ImotiWatch/1.0; public auction notices monitor)"
+BROWSER_UA = ("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) "
+              "Chrome/140.0.0.0 Safari/537.36")
+BROWSER_HOSTS = {"sales.bcpea.org", "sales.nra.bg"}  # reject non-browser clients
 TIMEOUT = 25
 MAX_BYTES = 12 * 1024 * 1024
 PER_HOST_DELAY = 1.0  # seconds between requests to the same host
@@ -83,8 +86,12 @@ def get(url: str, params: dict | None = None) -> Page:
     verify = True
     for attempt in range(2):
         try:
+            hdrs = None
+            if host in BROWSER_HOSTS:
+                hdrs = {"User-Agent": BROWSER_UA,
+                        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8"}
             r = _session.get(url, params=params, timeout=TIMEOUT, verify=verify, stream=True,
-                             allow_redirects=True)
+                             allow_redirects=True, headers=hdrs)
             buf = io.BytesIO()
             for chunk in r.iter_content(65536):
                 buf.write(chunk)
@@ -103,6 +110,6 @@ def get(url: str, params: dict | None = None) -> Page:
                 verify = False  # many .government.bg sites ship incomplete chains
                 continue
             raise FetchError(f"SSL error {url}")
-        except requests.exceptions.RequestException as e:
+        except (requests.exceptions.RequestException, ValueError, UnicodeError) as e:
             raise FetchError(f"{type(e).__name__}: {url}") from e
     raise FetchError(f"failed {url}")

@@ -1,0 +1,12 @@
+services:
+  imoti-watch:
+    build: .
+    container_name: imoti-watch
+    restart: unless-stopped
+    env_file: .env
+    ports:
+      - "8090:8090"
+    volumes:
+      - ./data/docs-data:/app/docs/data
+      - ./data/digests:/app/docs/digests
+      - ./data/state:/app/state

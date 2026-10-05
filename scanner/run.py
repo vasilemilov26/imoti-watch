@@ -7,6 +7,7 @@ import datetime as dt
 import json
 import logging
 import os
+import re
 import time
 import traceback
 from pathlib import Path
@@ -25,7 +26,9 @@ ITEMS_FILE = DATA / "items.json"
 SOURCES_FILE = DATA / "sources.json"
 DISC_FILE = STATE / "discovered.json"
 REDISCOVER_DAYS = 14
-DETAIL_LIMIT_PER_SOURCE = 25
+DETAIL_LIMIT_PER_SOURCE = 40
+BACKFILL_PER_SOURCE = 30   # items seen earlier without their detail page
+RESULT_RE = re.compile(r"спечелил\w* участник|определян\w* на (?:спечелил|купувач)|обявяване на (?:спечелил|купувач)|протокол\w*\s+(?:№|от|за|към)|резултат\w* от (?:търг|конкурс)|класиране", re.I)
 GONE_AFTER_MISSES = 2
 
 log = logging.getLogger("scanner")
@@ -84,10 +87,17 @@ def scan_source(src: dict, disc: dict, ctx: Ctx, force_disc: bool) -> dict:
             seen = set()
             todo = list(urls)
             visited = 0
+            errors = []
+            ok_pages = 0
             while todo and visited < len(urls) + 2:
                 u = todo.pop(0)
                 visited += 1
-                p = fetch.get(u)
+                try:
+                    p = fetch.get(u)
+                except fetch.FetchError as e:
+                    errors.append(str(e))
+                    continue
+                ok_pages += 1
                 if not p.text:
                     continue
                 for c in listing_candidates(p.url, p.text):
@@ -96,6 +106,8 @@ def scan_source(src: dict, disc: dict, ctx: Ctx, force_disc: bool) -> dict:
                         res["candidates"].append(c)
                 if visited <= len(urls):  # follow page 2 of each listing once
                     todo += [x for x in pagination_links(p.url, p.text, 1) if x not in urls]
+            if not ok_pages:
+                raise fetch.FetchError(errors[0] if errors else "no pages")
         res["ok"] = True
     except fetch.FetchError as e:
         res["error"] = str(e)
@@ -122,6 +134,7 @@ def build_item(src: dict, cand: dict, fetch_detail: bool) -> dict:
         "first_seen": NOW_S, "last_seen": NOW_S, "misses": 0, "status": "active",
         "oblast": src.get("oblast"), "municipality": src.get("municipality"),
         "docs": docs, "history": [{"t": NOW_S, "e": "нова обява"}],
+        "detailed": bool(docs) or text != cand["context"],
     }
     for k, v in fields.items():
         if k == "status_hint":
@@ -147,6 +160,9 @@ def build_item(src: dict, cand: dict, fetch_detail: bool) -> dict:
                 item["status"] = a["status"]
     if is_stale(fields) and not item.get("auction_date", "") >= dt.date.today().isoformat():
         item["archived"] = True
+    if RESULT_RE.search(cand["title"]) or RESULT_RE.search(text[:300]):
+        item["archived"] = True          # протокол / спечелил участник – резултат, не нов търг
+        item["notice"] = "result"
     geo.locate(item)
     return item
 
@@ -155,6 +171,7 @@ def merge(items: dict, src: dict, res: dict, ctx: Ctx) -> int:
     group = src.get("group", src["id"])
     new = 0
     details_done = 0
+    backfilled = 0
     seen_ids = set()
     for c in res["candidates"]:
         iid = f"{group}:{c['key']}"
@@ -166,12 +183,26 @@ def merge(items: dict, src: dict, res: dict, ctx: Ctx) -> int:
             if it["status"] == "gone":
                 it["status"] = "active"
                 it["history"].append({"t": NOW_S, "e": "отново публикувана"})
+            if (not it.get("detailed") and src["kind"] != "cards" and backfilled < BACKFILL_PER_SOURCE
+                    and not it.get("archived") and not ctx.out_of_time()):
+                backfilled += 1
+                try:
+                    fresh = build_item(src, c, True)
+                    for k in ("snippet", "docs", "detailed", "cadastral_ids", "ekatte", "upi", "area_m2",
+                              "price_eur", "price_raw", "step_eur", "auction_date", "deadline", "max_date",
+                              "settlement", "deal", "ptype", "archived", "notice", "lat", "lon", "geo_precision"):
+                        if fresh.get(k) is not None:
+                            it[k] = fresh[k]
+                except Exception as e:
+                    log.warning("%s: backfill failed %s: %s", src["id"], c.get("url"), e)
             st = detect_status(c["context"]) if src.get("results_only") else None
             if st and it["status"] != st:
                 it["status"] = st
                 it["history"].append({"t": NOW_S, "e": {"unsuccessful": "търгът е неуспешен",
                                                         "cancelled": "прекратен", "sold": "продаден/спечелен"}[st]})
             continue
+        if src.get("results_only"):
+            continue  # „приключили търгове“ only update auctions we already know
         if ctx.out_of_time():
             break
         do_detail = details_done < DETAIL_LIMIT_PER_SOURCE
@@ -182,8 +213,6 @@ def merge(items: dict, src: dict, res: dict, ctx: Ctx) -> int:
         except Exception as e:
             log.warning("%s: build failed %s: %s", src["id"], c.get("url"), e)
             continue
-        if src.get("results_only"):
-            it["archived"] = it.get("archived", False)
         if src["kind"] != "cards" and not is_relevant(it["snippet"] + " " + it["title"] + " " + c["context"]) and not it.get("cadastral_ids"):
             continue
         items[iid] = it
@@ -227,6 +256,8 @@ def main():
             s = futs[f]
             results[s["id"]] = (s, f.result())
 
+    ro = {s["id"] for s in srcs if s.get("results_only")}
+    items = {k: v for k, v in items.items() if v["source_id"] not in ro}
     total_new = 0
     order = sorted(results.values(), key=lambda x: 1 if x[0].get("results_only") else 0)
     for s, r in order:

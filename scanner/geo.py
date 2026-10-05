@@ -12,6 +12,7 @@ from .fetch import UA
 
 log = logging.getLogger(__name__)
 STATE = Path(__file__).resolve().parent.parent / "state"
+STATE.mkdir(exist_ok=True)
 EKATTE_FILE = STATE / "ekatte.json"
 CACHE_FILE = STATE / "geocache.json"
 WDQS = "https://query.wikidata.org/sparql"

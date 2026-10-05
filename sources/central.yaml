@@ -82,8 +82,8 @@ sources:
   - id: mo
     name: Министерство на отбраната – имоти
     category: darzhava
-    kind: generic
-    urls: ["https://www.mod.bg/bg/property_2021.html"]
+    kind: discover
+    home: "https://www.mod.bg/"
   - id: mrrb
     name: МРРБ
     category: darzhava

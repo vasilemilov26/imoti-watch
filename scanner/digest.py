@@ -24,6 +24,7 @@ import yaml
 ROOT = Path(__file__).resolve().parent.parent
 ITEMS = ROOT / "docs" / "data" / "items.json"
 STATE = ROOT / "state" / "digest.json"
+STATE.parent.mkdir(exist_ok=True)
 OUTDIR = ROOT / "docs" / "digests"
 
 CAT = {"apk": "АППК", "chsi": "ЧСИ", "nap": "НАП", "darzhava": "Министерства/агенции", "oblast": "Области",
@@ -77,7 +78,7 @@ def row(it: dict, star: bool) -> str:
             f'<span style="color:#777;font-size:12px">{e(loc)} — {e(it["source"])}</span></td></tr>')
 
 
-def build(items: list[dict], since: str, f: dict) -> tuple[str, int, int, list]:
+def build(items: list[dict], since: str, f: dict):
     new = [i for i in items if i["first_seen"] > since and not i.get("archived") and not i.get("irrelevant")]
     changed = [i for i in items if i["first_seen"] <= since and any(h["t"] > since and h["e"] != "нова обява"
                                                                     for h in i.get("history", []))]
@@ -105,7 +106,7 @@ def build(items: list[dict], since: str, f: dict) -> tuple[str, int, int, list]:
             parts.append(f'<li><a href="{html.escape(i["url"])}">{html.escape(i["title"][:120])}</a> — <b>{html.escape(ev)}</b></li>')
         parts.append("</ul>")
     parts.append("</div>")
-    return "".join(parts), len(new), len(stars), changed
+    return "".join(parts), new, stars, changed
 
 
 def send(subject: str, body: str):
@@ -116,10 +117,88 @@ def send(subject: str, body: str):
     msg = MIMEMultipart("alternative")
     msg["Subject"], msg["From"], msg["To"] = subject, user, to
     msg.attach(MIMEText(body, "html", "utf-8"))
-    with smtplib.SMTP_SSL(os.environ.get("SMTP_HOST", "smtp.gmail.com"), int(os.environ.get("SMTP_PORT", 465)),
-                          context=ssl.create_default_context()) as s:
+    host = os.environ.get("SMTP_HOST") or "smtp.gmail.com"
+    port = int(os.environ.get("SMTP_PORT") or 465)
+    sender = os.environ.get("MAIL_FROM") or user
+    msg.replace_header("From", sender)
+    if port == 465:
+        conn = smtplib.SMTP_SSL(host, port, context=ssl.create_default_context(), timeout=60)
+    else:
+        conn = smtplib.SMTP(host, port, timeout=60)
+        conn.starttls(context=ssl.create_default_context())
+    with conn as s:
         s.login(user, pw)
-        s.sendmail(user, [x.strip() for x in to.split(",")], msg.as_string())
+        s.sendmail(sender, [x.strip() for x in to.split(",")], msg.as_string())
+    return True
+
+
+TG_STATE = ROOT / "state" / "telegram.json"
+
+
+def _tg(method: str, **params):
+    import urllib.parse
+    import urllib.request
+    tok = os.environ["TELEGRAM_BOT_TOKEN"].strip()
+    data = urllib.parse.urlencode(params).encode()
+    with urllib.request.urlopen(f"https://api.telegram.org/bot{tok}/{method}", data=data, timeout=30) as r:
+        return json.loads(r.read().decode())
+
+
+def telegram_chat_id() -> str | None:
+    """TELEGRAM_CHAT_ID, or auto-detected from the last person who wrote to the bot (saved once)."""
+    cid = os.environ.get("TELEGRAM_CHAT_ID", "").strip()
+    if cid:
+        return cid
+    saved = json.loads(TG_STATE.read_text("utf-8")) if TG_STATE.exists() else {}
+    if saved.get("chat_id"):
+        return saved["chat_id"]
+    try:
+        upd = _tg("getUpdates").get("result", [])
+    except Exception as e:
+        print("telegram getUpdates failed:", e)
+        return None
+    for u in reversed(upd):
+        chat = (u.get("message") or {}).get("chat")
+        if chat:
+            TG_STATE.write_text(json.dumps({"chat_id": str(chat["id"])}), "utf-8")
+            return str(chat["id"])
+    print("Telegram: пратете първо едно съобщение на бота си, за да разбере къде да пише.")
+    return None
+
+
+def send_telegram(new: list[dict], stars: set, changed: list[dict], today: str) -> bool:
+    if not os.environ.get("TELEGRAM_BOT_TOKEN", "").strip():
+        return False
+    cid = telegram_chat_id()
+    if not cid:
+        return False
+    e = html.escape
+    dash = os.environ.get("DASHBOARD_URL", "")
+    head = f"<b>Имоти на търг – {today}</b>\n{len(new)} нови, {len(stars)} ⭐"
+    if dash:
+        head += f'\n<a href="{e(dash)}">Отвори таблото</a>'
+    lines = []
+    for i in new:
+        star = "⭐ " if i["id"] in stars else ""
+        meta = " · ".join(x for x in [fmt_area(i.get("area_m2")), fmt_money(i.get("price_eur")),
+                                       ("търг " + i["auction_date"]) if i.get("auction_date") else ""] if x and x != "—")
+        loc = ", ".join(x for x in [i.get("settlement"), i.get("oblast")] if x)
+        lines.append(f'{star}<a href="{e(i["url"])}">{e(i["title"][:110])}</a>\n{e(loc)}{" · " if loc and meta else ""}{e(meta)}')
+    for i in changed[:30]:
+        ev = [h["e"] for h in i["history"] if h["e"] != "нова обява"][-1]
+        lines.append(f'🔄 <a href="{e(i["url"])}">{e(i["title"][:90])}</a> – {e(ev)}')
+    # Telegram: max 4096 chars per message → several messages; cap to keep the chat readable
+    msgs, cur = [], head
+    for ln in lines[:120]:
+        if len(cur) + len(ln) + 2 > 3900:
+            msgs.append(cur)
+            cur = ""
+        cur += "\n\n" + ln
+    msgs.append(cur)
+    if len(lines) > 120:
+        msgs.append(f"… и още {len(lines) - 120} – вижте таблото.")
+    for m in msgs:
+        _tg("sendMessage", chat_id=cid, text=m, parse_mode="HTML", disable_web_page_preview="true")
     return True
 
 
@@ -132,15 +211,21 @@ def main():
     first = "since" not in st
     since = st.get("since") or (dt.datetime.now(dt.timezone.utc) - dt.timedelta(days=1)).isoformat()
     f = yaml.safe_load((ROOT / "filters.yaml").read_text("utf-8"))
-    body, n, nstar, changed = build(items, since, f)
+    body, new, stars, changed = build(items, since, f)
+    n, nstar = len(new), len(stars)
     today = dt.date.today().isoformat()
     OUTDIR.mkdir(parents=True, exist_ok=True)
-    (OUTDIR / f"{today}.html").write_text(body, "utf-8")
+    page = ('<!doctype html><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">'
+            f'<title>Бюлетин {today}</title><body style="margin:16px">') + body
+    (OUTDIR / f"{today}.html").write_text(page, "utf-8")
+    (OUTDIR / "latest.html").write_text(page, "utf-8")
     if first:
         body = ('<p style="font-family:Arial;color:#a00">Първи бюлетин: показани са всички намерени при първото '
                 'сканиране обяви. От утре – само новите.</p>') + body
     if not args.dry_run and (n or changed):
-        send(f"Имоти на търг: {n} нови ({nstar} ⭐) – {today}", body)
+        if os.environ.get("SMTP_USER"):
+            send(f"Имоти на търг: {n} нови ({nstar} ⭐) – {today}", body)
+        send_telegram(new, stars, changed, today)
     if not args.dry_run:
         st["since"] = max([i["first_seen"] for i in items] + [since])
         STATE.write_text(json.dumps(st), "utf-8")
